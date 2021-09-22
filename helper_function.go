@@ -75,10 +75,10 @@ func conversionDirect(e1 ComplexEmployee){
 	//fmt.Println(fmt.Printf("employee: %+v",e2))
 }
 
+var tmpl, err = template.New("employeeT").Funcs(getFuncMap()).ParseFiles("employeeT","addressT","addressFormatterT","metadataT")
+
 func GoTemplate(e1 ComplexEmployee){
 	var e2 SimpleEmployee
-
-	var tmpl, err = template.New("employeeT").Funcs(getFuncMap()).ParseFiles("employeeT","addressT","addressFormatterT","metadataT")
 
 	if err != nil {
 		fmt.Println(err)

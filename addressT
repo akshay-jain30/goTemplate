@@ -1,0 +1,9 @@
+{
+    {{if (eq .State "MP")}}
+            "FormattedAddress": {{template "addressFormatterT" .}},
+    {{end}}
+    "StreetName": "{{.StreetName}}",
+    "State": "{{ .State}}",
+    "Pin": {{ .Pin}},
+    "City": "{{ getCity .}}"
+}

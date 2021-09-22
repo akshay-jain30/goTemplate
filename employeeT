@@ -1,0 +1,15 @@
+{
+    "ID": {{.ID}},
+    "FirstName": "{{ .Name}}",
+    "FamilyName": "{{ .Name}}",
+
+    {{if (eq .PrimaryAddress.Pin 450331)}}
+        "Address":{{template "addressT" formatAddress .PrimaryAddress}},
+        "Metadata": {{template "metadataT" .}},
+    {{end}}
+    "Contact": [{{range $index, $element := rearrangeContact .Contact}}
+        {{if (ne $index 0)}},"{{.}}"
+        {{else}} "{{.}}"
+        {{end}}
+    {{end}}]
+}

@@ -98,10 +98,10 @@ func GoTemplate(e1 ComplexEmployee){
 	//fmt.Println(fmt.Printf("employee: %+v",e2))
 }
 
+var tmplRecursive, _ = template.New("recursiveT").ParseFiles("recursiveT")
+
+
 func GoRecursiveTemplate(depth int){
-
-	var tmplRecursive, _ = template.New("recursiveT").ParseFiles("recursiveT")
-
 	recTemplate := &RecursiveStruct{
 		Depth: depth,
 	}

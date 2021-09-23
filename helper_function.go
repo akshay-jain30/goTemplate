@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
+	"io/ioutil"
 	"math/rand"
 	"sort"
 	"text/template"
@@ -121,6 +122,8 @@ func GoRecursiveTemplate(depth int){
 	err = tmplRecursive.Execute(buf, recTemplate)
 	//fmt.Println(fmt.Printf("recTJson: %+v",string(recTJson)))
 	//fmt.Println(fmt.Printf("templateOutput: %+v",buf))
+
+	ioutil.WriteFile("filename", []byte(buf.String()), 0644)
 
 	if err != nil {
 		fmt.Println(err)

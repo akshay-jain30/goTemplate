@@ -1,5 +1,11 @@
 {
     "Depth": {{ .Depth}},
+    {{if (eq (getDynamicTemplateName .Depth) "evenT")}}
+        "DynamicTemplateChecker": "{{template "evenT" .}}",
+    {{end}}
+    {{if (eq (getDynamicTemplateName .Depth) "oddT")}}
+        "DynamicTemplateChecker": "{{template "oddT" .}}",
+    {{end}}
     "Property_1": "{{.GetProperty}}",
     "Property_2": "{{.GetProperty}}",
     "Property_3": "{{.GetProperty}}",
@@ -13,4 +19,5 @@
     {{if (ne .Decrement 0)}}
         ,"Next": {{template "recursiveT" .}}
     {{end}}
+
 }

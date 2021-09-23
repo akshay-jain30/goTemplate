@@ -54,6 +54,7 @@ type RecursiveStruct struct {
 	Property_9 string
 	Property_10 string
 	Next *RecursiveStruct
+	DynamicTemplateChecker string
 }
 
 func (r *RecursiveStruct) Decrement() int{

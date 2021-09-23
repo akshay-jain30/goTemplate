@@ -75,7 +75,7 @@ func conversionDirect(e1 ComplexEmployee){
 	//fmt.Println(fmt.Printf("employee: %+v",e2))
 }
 
-var tmpl, err = template.New("employeeT").Funcs(getFuncMap()).ParseFiles("employeeT","addressT","addressFormatterT","metadataT")
+var tmplEmployee, err = template.New("employeeT").Funcs(getFuncMap()).ParseFiles("employeeT","addressT","addressFormatterT","metadataT")
 
 func GoTemplate(e1 ComplexEmployee){
 	var e2 SimpleEmployee
@@ -86,7 +86,7 @@ func GoTemplate(e1 ComplexEmployee){
 
 	buf := &bytes.Buffer{}
 	if err != nil { panic(err) }
-	err = tmpl.Execute(buf, e1)
+	err = tmplEmployee.Execute(buf, e1)
 	//fmt.Println(fmt.Printf("employee: %+v",buf))
 	if err != nil {
 		fmt.Println(err)
@@ -96,6 +96,30 @@ func GoTemplate(e1 ComplexEmployee){
 		fmt.Println(err)
 	}
 	//fmt.Println(fmt.Printf("employee: %+v",e2))
+}
+
+func GoRecursiveTemplate(depth int){
+
+	var tmplRecursive, _ = template.New("recursiveT").ParseFiles("recursiveT")
+
+	recTemplate := &RecursiveStruct{
+		Depth: depth,
+	}
+
+	//recTJson , err := json.Marshal(recTemplate)
+	buf := &bytes.Buffer{}
+	if err != nil { panic(err) }
+	err = tmplRecursive.Execute(buf, recTemplate)
+	//fmt.Println(fmt.Printf("recTJson: %+v",string(recTJson)))
+	//fmt.Println(fmt.Printf("templateOutput: %+v",buf))
+
+	if err != nil {
+		fmt.Println(err)
+	}
+	err = json.Unmarshal([]byte(buf.String()),&recTemplate)
+	if err != nil {
+		fmt.Println(err)
+	}
 }
 
 

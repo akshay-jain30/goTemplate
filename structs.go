@@ -40,3 +40,13 @@ type Metadata struct {
 	metadata_9 string
 	metadata_10 string
 }
+
+type RecursiveStruct struct {
+	Depth int
+	Next *RecursiveStruct
+}
+
+func (r *RecursiveStruct) Decrement() int{
+	r.Depth--
+	return r.Depth
+}

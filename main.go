@@ -21,5 +21,6 @@ func main() {
 	}
 	GoTemplate(e1)
 	conversionDirect(e1)
+	GoRecursiveTemplate(10)
 }
 

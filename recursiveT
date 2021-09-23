@@ -1,0 +1,6 @@
+{
+    "Depth": {{ .Depth}}
+    {{if (ne .Decrement 0)}}
+        ,"Next": {{template "recursiveT" .}}
+    {{end}}
+}

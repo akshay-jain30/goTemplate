@@ -39,6 +39,14 @@ var getRandomString  = func() string {
 	}
 }
 
+var getRandomStringV2  = func() string {
+	if rand.Intn(10)%3==0 {
+		return "divisibleby3"
+	}else {
+		return "notdivisibleby3"
+	}
+}
+
 func getFuncMap() template.FuncMap{
 	var funMap = make(map[string]interface{})
 
@@ -48,6 +56,7 @@ func getFuncMap() template.FuncMap{
 	funMap["formatAddress"]= formatAddress
 	funMap["rearrangeContact"]= rearrangeContact
 	funMap["getRandomString"]= getRandomString
+	funMap["getRandomStringV2"]= getRandomStringV2
 
 	return funMap
 }
@@ -98,7 +107,7 @@ func GoTemplate(e1 ComplexEmployee){
 	//fmt.Println(fmt.Printf("employee: %+v",e2))
 }
 
-var tmplRecursive, _ = template.New("recursiveT").ParseFiles("recursiveT")
+var tmplRecursive, _ = template.New("recursiveT").Funcs(getFuncMap()).ParseFiles("recursiveT")
 
 
 func GoRecursiveTemplate(depth int){

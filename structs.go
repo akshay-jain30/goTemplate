@@ -43,6 +43,16 @@ type Metadata struct {
 
 type RecursiveStruct struct {
 	Depth int
+	Property_1 string
+	Property_2 string
+	Property_3 string
+	Property_4 string
+	Property_5 string
+	Property_6 string
+	Property_7 string
+	Property_8 string
+	Property_9 string
+	Property_10 string
 	Next *RecursiveStruct
 }
 
@@ -50,3 +60,12 @@ func (r *RecursiveStruct) Decrement() int{
 	r.Depth--
 	return r.Depth
 }
+
+func (r *RecursiveStruct) GetProperty() string{
+	if r.Depth%2==1{
+		return "odd"
+	}else{
+		return "even"
+	}
+}
+

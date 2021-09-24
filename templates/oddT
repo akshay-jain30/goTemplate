@@ -1,1 +1,12 @@
-This is a odd template since {{.}} is odd
+{
+    "Depth": {{ .Depth}},
+    "Property_1": "{{.GetProperty}}",
+    "Property_3": "{{.GetProperty}}",
+    "Property_5": "{{getRandomString}}",
+    "Property_7": "{{getRandomString}}",
+    "Property_9": "{{getRandomStringV2}}"
+    {{$nestedTemplateOutput := (invokeDynamicTemplate .) }}
+    {{if ne $nestedTemplateOutput ""}}
+        ,"Next": {{$nestedTemplateOutput}}
+    {{end}}
+}

@@ -1,6 +1,5 @@
 {
     "Depth": {{ .Depth}},
-    "DynamicTemplateChecker": "{{invokeDynamicTemplate .Depth}}",
     "Property_1": "{{.GetProperty}}",
     "Property_2": "{{.GetProperty}}",
     "Property_3": "{{.GetProperty}}",
@@ -11,8 +10,8 @@
     "Property_8": "{{getRandomStringV2}}",
     "Property_9": "{{getRandomStringV2}}"
 
-    {{if (ne .Decrement 0)}}
-        ,"Next": {{template "recursiveT" .}}
+    {{$nestedTemplateOutput := (invokeDynamicTemplate .) }}
+    {{if ne $nestedTemplateOutput ""}}
+        ,"Next": {{$nestedTemplateOutput}}
     {{end}}
-
 }

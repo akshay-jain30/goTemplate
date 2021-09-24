@@ -48,12 +48,15 @@ var getRandomStringV2  = func() string {
 	}
 }
 
-var invokeDynamicTemplate = func(depth int) string {
-	if depth%2==1 {
-		output,_ := executeTemplate("oddT",depth)
+var invokeDynamicTemplate = func(r *RecursiveStruct) string {
+	r.Depth--
+	if r.Depth == 0 {
+		return ""
+	}else if r.Depth%2==1 {
+		output,_ := executeTemplate("oddT",r)
 		return output
 	}else{
-		output,_ := executeTemplate("evenT",depth)
+		output,_ := executeTemplate("evenT",r)
 		return output
 	}
 }

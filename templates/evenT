@@ -1,1 +1,11 @@
-This is a even template since {{.}} is even
+{
+    "Depth": {{ .Depth}},
+    "Property_2": "{{.GetProperty}}",
+    "Property_4": "{{.GetProperty}}",
+    "Property_6": "{{getRandomString}}",
+    "Property_8": "{{getRandomStringV2}}"
+    {{$nestedTemplateOutput := (invokeDynamicTemplate .) }}
+    {{if ne $nestedTemplateOutput ""}}
+        ,"Next": {{$nestedTemplateOutput}}
+    {{end}}
+}

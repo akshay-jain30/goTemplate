@@ -37,6 +37,6 @@ func initialiseTemplates(){
 
 func main(){
 	initialiseTemplates()
-	GoRecursiveTemplate(2)
+	GoRecursiveTemplate(2,true)
 }
 

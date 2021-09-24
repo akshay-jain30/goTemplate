@@ -24,5 +24,5 @@ func TestSampleCase(t *testing.T){
 	}
 	GoTemplate(e1)
 	conversionDirect(e1)
-	GoRecursiveTemplate(10)
+	GoRecursiveTemplate(10, true)
 }

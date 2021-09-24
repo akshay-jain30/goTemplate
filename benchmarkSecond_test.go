@@ -104,16 +104,16 @@ func BenchmarkGoTemplateNested_2Conversion(b *testing.B) {
 	}
 }
 
-func BenchmarkGoTemplateRecursive_100Conversion(b *testing.B) {
+func BenchmarkGoTemplateRecursive_1000Conversion_dynamic(b *testing.B) {
 	initialiseTemplates()
 	for i := 0; i < b.N; i++ {
-		GoRecursiveTemplate(100)
+		GoRecursiveTemplate(1000, false)
 	}
 }
 
-func BenchmarkGoTemplateRecursive_1000Conversion(b *testing.B) {
+func BenchmarkGoTemplateRecursive_1000Conversion_static(b *testing.B) {
 	initialiseTemplates()
 	for i := 0; i < b.N; i++ {
-		GoRecursiveTemplate(1000)
+		GoRecursiveTemplate(1000, true)
 	}
 }

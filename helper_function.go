@@ -116,13 +116,19 @@ func GoTemplate(e1 ComplexEmployee){
 }
 
 
-func GoRecursiveTemplate(depth int){
+func GoRecursiveTemplate(depth int, isStatic bool){
 	recTemplate := &RecursiveStruct{
 		Depth: depth,
 	}
 
 	buf := &bytes.Buffer{}
-	err := templatesMap[pathPrefix+"recursiveT"].Execute(buf, recTemplate)
+	var templateName string
+	if isStatic {
+		templateName = "recursiveStaticT"
+	}else{
+		templateName = "recursiveDynamicT"
+	}
+	err := templatesMap[pathPrefix+templateName].Execute(buf, recTemplate)
 
 	if err != nil {
 		fmt.Println(err)

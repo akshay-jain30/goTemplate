@@ -1,0 +1,16 @@
+{
+    "Depth": {{ .Depth}},
+    "Property_1": "{{.GetProperty}}",
+    "Property_2": "{{.GetProperty}}",
+    "Property_3": "{{.GetProperty}}",
+    "Property_4": "{{.GetProperty}}",
+    "Property_5": "{{getRandomString}}",
+    "Property_6": "{{getRandomString}}",
+    "Property_7": "{{getRandomString}}",
+    "Property_8": "{{getRandomStringV2}}",
+    "Property_9": "{{getRandomStringV2}}"
+
+    {{if (ne .Decrement 0)}}
+        ,"Next": {{template "recursiveStaticT" .}}
+    {{end}}
+}

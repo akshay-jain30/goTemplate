@@ -48,11 +48,13 @@ var getRandomStringV2  = func() string {
 	}
 }
 
-var getDynamicTemplateName = func(depth int) string {
+var invokeDynamicTemplate = func(depth int) string {
 	if depth%2==1 {
-		return "oddT"
+		output,_ := executeTemplate("oddT",depth)
+		return output
 	}else{
-		return "evenT"
+		output,_ := executeTemplate("evenT",depth)
+		return output
 	}
 }
 
@@ -66,7 +68,7 @@ func getFuncMap() template.FuncMap{
 	funMap["rearrangeContact"]= rearrangeContact
 	funMap["getRandomString"]= getRandomString
 	funMap["getRandomStringV2"]= getRandomStringV2
-	funMap["getDynamicTemplateName"]= getDynamicTemplateName
+	funMap["invokeDynamicTemplate"]= invokeDynamicTemplate
 
 	return funMap
 }
@@ -94,18 +96,11 @@ func conversionDirect(e1 ComplexEmployee){
 	//fmt.Println(fmt.Printf("employee: %+v",e2))
 }
 
-var tmplEmployee, err = template.New("employeeT").Funcs(getFuncMap()).ParseFiles("employeeT","addressT","addressFormatterT","metadataT")
-
 func GoTemplate(e1 ComplexEmployee){
 	var e2 SimpleEmployee
 
-	if err != nil {
-		fmt.Println(err)
-	}
-
 	buf := &bytes.Buffer{}
-	if err != nil { panic(err) }
-	err = tmplEmployee.Execute(buf, e1)
+	err := templatesMap[pathPrefix+"employeeT"].Execute(buf, e1)
 	//fmt.Println(fmt.Printf("employee: %+v",buf))
 	if err != nil {
 		fmt.Println(err)
@@ -117,25 +112,20 @@ func GoTemplate(e1 ComplexEmployee){
 	//fmt.Println(fmt.Printf("employee: %+v",e2))
 }
 
-var tmplRecursive, _ = template.New("recursiveT").Funcs(getFuncMap()).ParseFiles("recursiveT","oddT","evenT")
-
 
 func GoRecursiveTemplate(depth int){
 	recTemplate := &RecursiveStruct{
 		Depth: depth,
 	}
 
-	//recTJson , err := json.Marshal(recTemplate)
 	buf := &bytes.Buffer{}
-	if err != nil { panic(err) }
-	err = tmplRecursive.Execute(buf, recTemplate)
+	err := templatesMap[pathPrefix+"recursiveT"].Execute(buf, recTemplate)
 
 	if err != nil {
 		fmt.Println(err)
 	}
 
-	//fmt.Println(fmt.Printf("recTJson: %+v",string(recTJson)))
-	//fmt.Println(fmt.Printf("templateOutput: %+v",buf))
+	//fmt.Printf("templateOutput buffer: %+v \n",buf)
 
 	//Code to dump the json to file
 	ioutil.WriteFile("filename", []byte(buf.String()), 0644)
@@ -144,6 +134,17 @@ func GoRecursiveTemplate(depth int){
 	if err != nil {
 		fmt.Println(err)
 	}
+	//fmt.Printf("templateOutput json: %+v \n",recTemplate)
+}
+
+func executeTemplate(templateName string, data interface{}) (string,error){
+	buf := &bytes.Buffer{}
+	err := templatesMap[pathPrefix+templateName].Execute(buf, data)
+	if err != nil {
+		fmt.Println(err)
+		return "",err
+	}
+	return buf.String(),nil
 }
 
 

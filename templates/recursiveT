@@ -1,11 +1,6 @@
 {
     "Depth": {{ .Depth}},
-    {{if (eq (getDynamicTemplateName .Depth) "evenT")}}
-        "DynamicTemplateChecker": "{{template "evenT" .}}",
-    {{end}}
-    {{if (eq (getDynamicTemplateName .Depth) "oddT")}}
-        "DynamicTemplateChecker": "{{template "oddT" .}}",
-    {{end}}
+    "DynamicTemplateChecker": "{{invokeDynamicTemplate .Depth}}",
     "Property_1": "{{.GetProperty}}",
     "Property_2": "{{.GetProperty}}",
     "Property_3": "{{.GetProperty}}",

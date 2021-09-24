@@ -3,6 +3,7 @@ package main
 import "testing"
 
 func BenchmarkDirectConversion(b *testing.B) {
+	initialiseTemplates()
 	e1 := ComplexEmployee{
 		Name: "Akshay",
 		Contact: []string{"988998899889","1234123412","112112","889997"},
@@ -29,6 +30,7 @@ func BenchmarkDirectConversion(b *testing.B) {
 
 
 func BenchmarkGoTemplateNested_0Conversion(b *testing.B) {
+	initialiseTemplates()
 	e1 := ComplexEmployee{
 		Name: "Akshay",
 		Contact: []string{"988998899889","1234123412","112112","889997"},
@@ -53,6 +55,7 @@ func BenchmarkGoTemplateNested_0Conversion(b *testing.B) {
 }
 
 func BenchmarkGoTemplateNested_1Conversion(b *testing.B) {
+	initialiseTemplates()
 	e1 := ComplexEmployee{
 		Name: "Akshay",
 		Contact: []string{"988998899889","1234123412","112112","889997"},
@@ -77,6 +80,7 @@ func BenchmarkGoTemplateNested_1Conversion(b *testing.B) {
 }
 
 func BenchmarkGoTemplateNested_2Conversion(b *testing.B) {
+	initialiseTemplates()
 	e1 := ComplexEmployee{
 		Name: "Akshay",
 		Contact: []string{"988998899889","1234123412","112112","889997"},
@@ -101,12 +105,14 @@ func BenchmarkGoTemplateNested_2Conversion(b *testing.B) {
 }
 
 func BenchmarkGoTemplateRecursive_100Conversion(b *testing.B) {
+	initialiseTemplates()
 	for i := 0; i < b.N; i++ {
 		GoRecursiveTemplate(100)
 	}
 }
 
 func BenchmarkGoTemplateRecursive_1000Conversion(b *testing.B) {
+	initialiseTemplates()
 	for i := 0; i < b.N; i++ {
 		GoRecursiveTemplate(1000)
 	}

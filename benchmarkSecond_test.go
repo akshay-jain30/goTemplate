@@ -117,3 +117,9 @@ func BenchmarkGoTemplateRecursive_1000Conversion_static(b *testing.B) {
 		GoRecursiveTemplate(1000, true)
 	}
 }
+
+func BenchmarkGoPlugin(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		bindThroughPlugin(1)
+	}
+}

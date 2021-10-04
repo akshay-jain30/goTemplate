@@ -156,5 +156,14 @@ func executeTemplate(templateName string, data interface{}) (string,error){
 	return buf.String(),nil
 }
 
+func bindThroughPlugin(depth int){
+
+
+	output := f.(func(int) string)(depth)
+
+	ioutil.WriteFile("filename", []byte(output), 0644)
+
+}
+
 
 

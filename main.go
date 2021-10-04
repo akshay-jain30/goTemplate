@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"os"
+	"plugin"
 	"text/template"
 )
 
@@ -35,8 +36,15 @@ func initialiseTemplates(){
 	}
 }
 
+var p, _ = plugin.Open("goPlugin/goPlugin.so")
+
+
+var f, _ = p.Lookup("Bind")
+
+
 func main(){
-	initialiseTemplates()
-	GoRecursiveTemplate(2,true)
+	//initialiseTemplates()
+	//GoRecursiveTemplate(2,true)
+	bindThroughPlugin(2)
 }
 

@@ -1,0 +1,10 @@
+<%: func UserList(userList []string, buffer *bytes.Buffer) (int,error) %>
+
+    <% member := 0 %>
+    <% for _, user := range userList {
+        if user!="" {
+            member++
+        }
+    }
+    return member,nil
+    %>

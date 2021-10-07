@@ -78,5 +78,8 @@ func bindThroughPlugin(depth int) string{
 	return output
 }
 
+func main() {
+	//do nothing
+}
 //go build -buildmode=plugin -o goPlugin.so main.go
 

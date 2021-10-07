@@ -1,3 +1,5 @@
+github.com/akshay-jain30/goTemplate/structs v0.0.0-20211007123111-b3db00b8d87c h1:6aeoyo+MeOTaqwt2r3dNp/DXcrW925YTfsMRGoKvy+w=
+github.com/akshay-jain30/goTemplate/structs v0.0.0-20211007123111-b3db00b8d87c/go.mod h1:NfTbcGp/xZf9yiURvJIKB/jhH0MLgNMaemQ/c0UVt10=
 github.com/howeyc/fsnotify v0.9.0 h1:0gtV5JmOKH4A8SsFxG2BczSeXWWPvcMT0euZt5gDAxY=
 github.com/howeyc/fsnotify v0.9.0/go.mod h1:41HzSPxBGeFRQKEEwgh49TRw/nKBsYZ2cF1OzPjSJsA=
 github.com/shiyanhui/hero v0.0.2 h1:RF8fwiIeWbVsdki8LCS905pxLjCQbOz/NcKE0g1ZOJc=

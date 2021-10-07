@@ -1,4 +1,4 @@
-module goTemplate
+module github.com/akshay-jain30/goTemplate
 
 go 1.17
 

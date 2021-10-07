@@ -1,4 +1,4 @@
-package main
+package structs
 
 type SampleStruct struct {
 	Field1 int

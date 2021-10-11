@@ -5,11 +5,15 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/akshay-jain30/goTemplate/structs"
+	"io"
 	"io/ioutil"
 	"math/rand"
+	"os"
 	"plugin"
 	"sort"
+	"strconv"
 	"text/template"
+	"time"
 )
 
 var getFirstName = func(name string) string {
@@ -182,6 +186,43 @@ func checkVersionConflict(){
 
 	fmt.Println(outputOld)
 	//fmt.Println(outputNew)
+}
+
+func checkHotReload() {
+	time.Sleep(time.Second * 3)
+	for true {
+		time.Sleep(time.Second * 1)
+		outputOld := pluginFunc["newPlugin/ReturnCommonStruct"].(func() structs.SampleStruct)()
+		fmt.Println(outputOld)
+	}
+}
+
+func initiateSOFiles() {
+	pluginDict = make(map[string] *plugin.Plugin)
+	pluginFunc = make(map[string] plugin.Symbol)
+	var err error
+	for true {
+		fmt.Println("updating so files")
+		filePath := "soFiles/newFileV2"+ strconv.Itoa(rand.Intn(100000)) + ".so"
+		MoveFile(filePath)
+		pluginDict["newPlugin"], err = plugin.Open(filePath)
+		if err==nil {
+			pluginFunc["newPlugin/ReturnCommonStruct"], _ = pluginDict["newPlugin"].Lookup("ReturnCommonStruct")
+		}
+		time.Sleep(time.Second * 10)
+	}
+}
+
+func MoveFile(filepath string) {
+	srcFile, _ := os.Open("newPlugin/newPlugin.so")
+	defer srcFile.Close()
+
+	destFile, _ := os.Create(filepath)
+	defer destFile.Close()
+
+	_, _ = io.Copy(destFile, srcFile)
+
+	_ = destFile.Sync()
 }
 
 

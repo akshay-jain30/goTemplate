@@ -37,17 +37,19 @@ func initialiseTemplates(){
 }
 
 var p, _ = plugin.Open("goPlugin/goPlugin.so")
-
-
 var f, _ = p.Lookup("Bind")
 
+var pluginDict map[string] *plugin.Plugin
+var pluginFunc map[string] plugin.Symbol
 
 
 func main(){
 	//initialiseTemplates()
 	//GoRecursiveTemplate(2,true)
 	bindThroughPlugin(2)
-	checkVersionConflict()
+	//checkVersionConflict()
+	go initiateSOFiles()
+	checkHotReload()
 }
 
 func initVersionTest() {

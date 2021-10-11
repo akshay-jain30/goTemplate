@@ -4,8 +4,10 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
+	"github.com/akshay-jain30/goTemplate/structs"
 	"io/ioutil"
 	"math/rand"
+	"plugin"
 	"sort"
 	"text/template"
 )
@@ -163,6 +165,23 @@ func bindThroughPlugin(depth int){
 
 	ioutil.WriteFile("filename", []byte(output), 0644)
 
+}
+
+func checkVersionConflict(){
+
+	old, err := plugin.Open("oldPlugin/oldPlugin.so")
+	//var new, _ = plugin.Open("newPlugin/newPlugin.so")
+	fmt.Println(err)
+
+	fOld, err := old.Lookup("ReturnCommonStruct")
+	//var fNew, _ = new.Lookup("ReturnCommonStruct")
+	fmt.Println(err)
+
+	outputOld := fOld.(func() structs.SampleStruct)()
+	//outputNew := fNew.(func() structs.SampleStruct)()
+
+	fmt.Println(outputOld)
+	//fmt.Println(outputNew)
 }
 
 
